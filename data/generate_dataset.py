@@ -1,35 +1,4 @@
-"""
-===============================================================================
-SYNTHETIC DATASET GENERATOR
-===============================================================================
-Purpose:
-    Generates a realistic synthetic dataset of 500+ student records for
-    academic burnout risk prediction. The relationships between features
-    and the target variable (burnout_risk) are designed to mimic real-world
-    academic scenarios.
 
-Features Generated:
-    - attendance (0-100): Class attendance percentage
-    - study_hours (0-14): Daily study hours
-    - sleep_hours (3-10): Daily sleep hours
-    - assignment_completion (0-100): Assignment completion rate percentage
-    - gpa (0.0-4.0): Grade Point Average
-    - stress_level (1-10): Self-reported stress level
-    - screen_time (1-16): Daily recreational screen time in hours
-    - part_time_hours (0-30): Weekly part-time work hours
-    - social_hours (0-8): Daily social/leisure hours
-
-Target Variable:
-    - burnout_risk: "Low", "Medium", or "High"
-
-The burnout risk score is computed as a weighted combination of features,
-introducing realistic correlations. Gaussian noise is added to prevent
-deterministic patterns and simulate real-world variability.
-
-Author: Student
-Course: Undergraduate AI Coursework
-===============================================================================
-"""
 
 import numpy as np
 import pandas as pd
@@ -37,34 +6,10 @@ import os
 
 
 def generate_synthetic_dataset(n_samples=600, random_state=42):
-    """
-    Generate a synthetic student burnout dataset with realistic feature
-    relationships.
 
-    The burnout risk is derived from a weighted scoring formula:
-        - Factors that INCREASE burnout: stress, screen_time, part_time_hours
-        - Factors that DECREASE burnout: attendance, study_hours, sleep_hours,
-          assignment_completion, gpa
-
-    Parameters
-    ----------
-    n_samples : int, default=600
-        Number of student records to generate. Minimum recommended is 500.
-    random_state : int, default=42
-        Seed for reproducibility of random number generation.
-
-    Returns
-    -------
-    pd.DataFrame
-        DataFrame containing all features and the burnout_risk target column.
-    """
     np.random.seed(random_state)
 
-    # -------------------------------------------------------------------------
-    # Step 1: Generate individual features with realistic distributions
-    # -------------------------------------------------------------------------
 
-    # Attendance: Most students attend 60-95% of classes (right-skewed)
     attendance = np.clip(np.random.normal(75, 15, n_samples), 10, 100)
 
     # Study hours: Daily study hours, typically 2-6 hours
