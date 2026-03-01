@@ -171,7 +171,7 @@ class ModelEvaluator:
         print(cm)
         return cm
 
-    def plot_confusion_matrix(self, save_path="models/confusion_matrix.png"):
+    def plot_confusion_matrix(self, save_path="modules/confusion_matrix.png"):
         """
         Plot the confusion matrix as a heatmap and save to file.
 
@@ -237,7 +237,7 @@ class ModelEvaluator:
     def plot_feature_importance(
         self,
         feature_importances,
-        save_path="models/feature_importance.png"
+        save_path="modules/feature_importance.png"
     ):
         """
         Create a horizontal bar chart of feature importances.

@@ -1,0 +1,10 @@
+Parameter,Value,Description
+n_estimators,200,Number of trees in the forest
+max_depth,15,Maximum depth of each tree
+min_samples_split,5,Minimum samples to split a node
+min_samples_leaf,2,Minimum samples in a leaf node
+max_features,sqrt,Features considered per split
+class_weight,balanced,Class weighting strategy
+random_state,42,Random seed for reproducibility
+oob_score,True,Out-of-bag score enabled
+n_jobs,-1,CPU cores used (-1 = all)

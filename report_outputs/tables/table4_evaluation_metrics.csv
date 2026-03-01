@@ -1,0 +1,5 @@
+Metric,Score,Percentage (%)
+Accuracy,0.6583,65.83
+Precision (Macro),0.6471,64.71
+Recall (Macro),0.6559,65.59
+F1-Score (Macro),0.6497,64.97

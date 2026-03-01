@@ -341,7 +341,7 @@ class DataPreprocessor:
             "label_encoder": self.label_encoder
         }
 
-    def save_artifacts(self, directory="models"):
+    def save_artifacts(self, directory="modules"):
         """
         Save the fitted LabelEncoder and StandardScaler for reuse
         during prediction (e.g., in the Streamlit app).
@@ -357,7 +357,7 @@ class DataPreprocessor:
         joblib.dump(self.feature_names, os.path.join(directory, "feature_names.pkl"))
         print(f"[INFO] Preprocessing artifacts saved to '{directory}/'")
 
-    def load_artifacts(self, directory="models"):
+    def load_artifacts(self, directory="modules"):
         """
         Load previously saved LabelEncoder and StandardScaler.
 

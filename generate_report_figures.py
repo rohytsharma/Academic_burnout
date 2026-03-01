@@ -77,7 +77,7 @@ def load_all_data():
 
     # Load trained model
     trainer = BurnoutModelTrainer()
-    trainer.load_model("models/random_forest_model.pkl")
+    trainer.load_model("modules/random_forest_model.pkl")
 
     # Get predictions
     y_pred = trainer.predict(data["X_test_scaled"])

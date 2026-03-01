@@ -41,7 +41,7 @@ def run_training_pipeline():
     data = preprocessor.preprocess_pipeline(dataset_path)
 
     # Save preprocessing artifacts (encoder, scaler) for Streamlit
-    preprocessor.save_artifacts("models")
+    preprocessor.save_artifacts("modules")
 
     # =========================================================================
     # STEP 3: Create Random Forest Model
@@ -91,20 +91,20 @@ def run_training_pipeline():
 
     # Generate confusion matrix
     evaluator.generate_confusion_matrix()
-    evaluator.plot_confusion_matrix("models/confusion_matrix.png")
+    evaluator.plot_confusion_matrix("modules/confusion_matrix.png")
 
     # Print detailed report
     evaluator.print_classification_report()
 
     # Feature importance
     feature_importances = trainer.get_feature_importance(data["feature_names"])
-    evaluator.plot_feature_importance(feature_importances, "models/feature_importance.png")
+    evaluator.plot_feature_importance(feature_importances, "modules/feature_importance.png")
 
     # =========================================================================
     # STEP 7: Save Model
     # =========================================================================
     print("\nSTEP 7: Saving trained model...\n")
-    trainer.save_model("models/random_forest_model.pkl")
+    trainer.save_model("modules/random_forest_model.pkl")
 
     # =========================================================================
     # SUMMARY
@@ -112,11 +112,11 @@ def run_training_pipeline():
     print("\n" + "=" * 70)
     print("   TRAINING PIPELINE COMPLETE")
     print("=" * 70)
-    print(f"   Model saved to:           models/random_forest_model.pkl")
-    print(f"   Scaler saved to:          models/scaler.pkl")
-    print(f"   Encoder saved to:         models/label_encoder.pkl")
-    print(f"   Confusion matrix plot:    models/confusion_matrix.png")
-    print(f"   Feature importance plot:  models/feature_importance.png")
+    print(f"   Model saved to:           modules/random_forest_model.pkl")
+    print(f"   Scaler saved to:          modules/scaler.pkl")
+    print(f"   Encoder saved to:         modules/label_encoder.pkl")
+    print(f"   Confusion matrix plot:    modules/confusion_matrix.png")
+    print(f"   Feature importance plot:  modules/feature_importance.png")
     print(f"\n   To launch the web app:")
     print(f"   streamlit run streamlit_app.py")
     print("=" * 70 + "\n")

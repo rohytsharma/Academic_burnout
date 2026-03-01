@@ -433,7 +433,7 @@ class BurnoutModelTrainer:
             raise RuntimeError("Model not trained. Call train() first.")
         return self.model.predict_proba(X)
 
-    def save_model(self, filepath="models/random_forest_model.pkl"):
+    def save_model(self, filepath="modules/random_forest_model.pkl"):
         """
         Save the trained model to disk using joblib serialisation.
 
@@ -449,7 +449,7 @@ class BurnoutModelTrainer:
         joblib.dump(self.model, filepath)
         print(f"[INFO] Model saved to: {filepath}")
 
-    def load_model(self, filepath="models/random_forest_model.pkl"):
+    def load_model(self, filepath="modules/random_forest_model.pkl"):
         """
         Load a previously trained model from disk.
 

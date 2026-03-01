@@ -65,10 +65,10 @@ def load_model_and_artifacts():
         (BurnoutModelTrainer, DataPreprocessor) with loaded artifacts.
     """
     trainer = BurnoutModelTrainer()
-    trainer.load_model("models/random_forest_model.pkl")
+    trainer.load_model("modules/random_forest_model.pkl")
 
     preprocessor = DataPreprocessor()
-    preprocessor.load_artifacts("models")
+    preprocessor.load_artifacts("modules")
 
     return trainer, preprocessor
 
@@ -82,7 +82,7 @@ def load_dataset():
 # =============================================================================
 # CHECK IF MODEL EXISTS
 # =============================================================================
-if not os.path.exists("models/random_forest_model.pkl"):
+if not os.path.exists("modules/random_forest_model.pkl"):
     st.error(
         "⚠️ **Trained model not found!**\n\n"
         "Please run the training pipeline first:\n\n"
@@ -315,7 +315,7 @@ elif page == "📊 Model Evaluation":
         data = preprocessor_eval.preprocess_pipeline(dataset_path)
 
         trainer_eval = BurnoutModelTrainer()
-        trainer_eval.load_model("models/random_forest_model.pkl")
+        trainer_eval.load_model("modules/random_forest_model.pkl")
 
         y_pred = trainer_eval.predict(data["X_test_scaled"])
 
@@ -362,7 +362,7 @@ elif page == "📊 Model Evaluation":
             "Diagonal values are correct predictions."
         )
 
-        fig_cm = evaluator.plot_confusion_matrix("models/confusion_matrix.png")
+        fig_cm = evaluator.plot_confusion_matrix("modules/confusion_matrix.png")
         st.pyplot(fig_cm)
         plt.close()
 
@@ -458,7 +458,7 @@ elif page == "📈 Feature Importance":
         )
         fig = evaluator_fi.plot_feature_importance(
             feature_importances,
-            "models/feature_importance.png"
+            "modules/feature_importance.png"
         )
         st.pyplot(fig)
         plt.close()
@@ -617,7 +617,7 @@ elif page == "🧠 About the Model":
     → different predictions).
 
     ### How Random Forest Solves This
-    1. **Bagging** (averaging many models) reduces variance:
+    1. **Bagging** (averaging many modules) reduces variance:
        - Var(average) = Var(individual) / B + correlation term
     2. **Random feature subsets** reduce correlation between trees:
        - If one feature dominates, not every tree uses it first
