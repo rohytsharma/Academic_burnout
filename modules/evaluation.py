@@ -20,8 +20,8 @@ AI Syllabus Relevance:
     - Confusion Matrix reveals which classes the model confuses.
     - F1-Score balances precision and recall into a single metric.
 
-Author: Student
-Course: Undergraduate AI Coursework
+Author: Rohit Sharma
+
 ===============================================================================
 """
 
@@ -42,49 +42,10 @@ import os
 
 
 class ModelEvaluator:
-    """
-    Evaluates the trained Random Forest model on test data.
 
-    Attributes
-    ----------
-    y_test : array-like
-        True labels for the test set.
-    y_pred : array-like
-        Predicted labels from the model.
-    class_names : list
-        Human-readable class names (e.g., ["High", "Low", "Medium"]).
-    metrics : dict
-        Dictionary of computed evaluation metrics.
-
-    Methods
-    -------
-    compute_metrics():
-        Calculates accuracy, precision, recall, and F1-score.
-    generate_confusion_matrix():
-        Creates and returns the confusion matrix array.
-    plot_confusion_matrix(save_path):
-        Plots and saves a heatmap of the confusion matrix.
-    print_classification_report():
-        Prints the detailed per-class classification report.
-    plot_feature_importance(feature_importances, save_path):
-        Creates and saves a horizontal bar chart of feature importances.
-    get_evaluation_summary():
-        Returns a formatted string summary of all metrics.
-    """
 
     def __init__(self, y_test, y_pred, class_names=None):
-        """
-        Initialise the evaluator with actual and predicted labels.
 
-        Parameters
-        ----------
-        y_test : array-like
-            True target values from the test set.
-        y_pred : array-like
-            Model predictions on the test set.
-        class_names : list, optional
-            Human-readable class labels. If None, uses numeric labels.
-        """
         self.y_test = y_test
         self.y_pred = y_pred
         self.class_names = class_names if class_names is not None else \
@@ -92,35 +53,7 @@ class ModelEvaluator:
         self.metrics = {}
 
     def compute_metrics(self):
-        """
-        Compute all classification evaluation metrics.
 
-        Metrics Explanation:
-        -------------------
-        Accuracy:
-            Total correct predictions / Total predictions.
-            Simple but can be misleading if classes are imbalanced.
-
-        Precision (macro-averaged):
-            For each class, Precision = TP / (TP + FP).
-            Macro = unweighted mean across all classes.
-            "Of all students I predicted as High risk, how many truly were?"
-
-        Recall (macro-averaged):
-            For each class, Recall = TP / (TP + FN).
-            Macro = unweighted mean across all classes.
-            "Of all truly High risk students, how many did I catch?"
-
-        F1-Score (macro-averaged):
-            Harmonic mean of Precision and Recall.
-            F1 = 2 * (Precision * Recall) / (Precision + Recall)
-            Balances both metrics; penalises large differences between them.
-
-        Returns
-        -------
-        dict
-            Dictionary with metric names and their values.
-        """
         self.metrics = {
             "accuracy": accuracy_score(self.y_test, self.y_pred),
             "precision_macro": precision_score(
@@ -144,47 +77,14 @@ class ModelEvaluator:
         return self.metrics
 
     def generate_confusion_matrix(self):
-        """
-        Generate the confusion matrix.
 
-        Confusion Matrix Explanation:
-        ----------------------------
-        A confusion matrix is an N×N table (N = number of classes) that
-        shows the counts of:
-            - TRUE POSITIVES (diagonal): correctly classified
-            - FALSE POSITIVES (column sum - diagonal): incorrectly assigned
-              to this class
-            - FALSE NEGATIVES (row sum - diagonal): missed from this class
-
-        For our 3-class problem (High, Low, Medium):
-            - Row = Actual class
-            - Column = Predicted class
-            - Cell (i, j) = number of samples with true label i predicted as j
-
-        Returns
-        -------
-        np.ndarray
-            Confusion matrix array of shape (n_classes, n_classes).
-        """
         cm = confusion_matrix(self.y_test, self.y_pred)
         print("\n[INFO] Confusion Matrix:")
         print(cm)
         return cm
 
     def plot_confusion_matrix(self, save_path="modules/confusion_matrix.png"):
-        """
-        Plot the confusion matrix as a heatmap and save to file.
 
-        Parameters
-        ----------
-        save_path : str
-            File path for saving the plot image.
-
-        Returns
-        -------
-        matplotlib.figure.Figure
-            The figure object (useful for Streamlit display).
-        """
         cm = confusion_matrix(self.y_test, self.y_pred)
 
         fig, ax = plt.subplots(figsize=(8, 6))
@@ -216,12 +116,7 @@ class ModelEvaluator:
         return fig
 
     def print_classification_report(self):
-        """
-        Print the detailed per-class classification report from scikit-learn.
 
-        This report shows precision, recall, F1-score, and support (count)
-        for EACH individual class, plus macro, weighted, and overall averages.
-        """
         print("\n" + "=" * 60)
         print("DETAILED CLASSIFICATION REPORT")
         print("=" * 60)
@@ -239,22 +134,7 @@ class ModelEvaluator:
         feature_importances,
         save_path="modules/feature_importance.png"
     ):
-        """
-        Create a horizontal bar chart of feature importances.
 
-        Parameters
-        ----------
-        feature_importances : list of tuples
-            List of (feature_name, importance_score) tuples,
-            sorted by importance descending.
-        save_path : str
-            File path for saving the plot.
-
-        Returns
-        -------
-        matplotlib.figure.Figure
-            The figure object.
-        """
         names = [fi[0] for fi in feature_importances]
         scores = [fi[1] for fi in feature_importances]
 
@@ -293,14 +173,7 @@ class ModelEvaluator:
         return fig
 
     def get_evaluation_summary(self):
-        """
-        Return a formatted string summary of all evaluation metrics.
 
-        Returns
-        -------
-        str
-            Multi-line string with all metrics.
-        """
         if not self.metrics:
             self.compute_metrics()
 

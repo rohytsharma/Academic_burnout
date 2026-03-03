@@ -14,8 +14,8 @@ Purpose:
     Launch with:
         streamlit run streamlit_app.py
 
-Author: Student
-Course: Undergraduate AI Coursework
+Author: ROhit Sharma
+
 ===============================================================================
 """
 
@@ -55,15 +55,7 @@ st.set_page_config(
 # =============================================================================
 @st.cache_resource
 def load_model_and_artifacts():
-    """
-    Load the trained Random Forest model, scaler, and label encoder.
-    Uses Streamlit's caching to load only once.
 
-    Returns
-    -------
-    tuple
-        (BurnoutModelTrainer, DataPreprocessor) with loaded artifacts.
-    """
     trainer = BurnoutModelTrainer()
     trainer.load_model("modules/random_forest_model.pkl")
 

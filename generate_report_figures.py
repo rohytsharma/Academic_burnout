@@ -32,8 +32,8 @@ Output Folder Structure:
         ├── table8_confusion_matrix.csv
         └── table9_hyperparameters.csv
 
-Author: Student
-Course: Undergraduate AI Coursework
+Author: ROhit Sharma
+
 ===============================================================================
 """
 
